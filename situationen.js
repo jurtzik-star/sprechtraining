@@ -20,6 +20,7 @@
 const SITUATIONEN = [
   {
     id: "dtz-b1-teil3-aemter-ummeldung",
+    aktiv: true, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1_TEIL3",
     formatLabel: "DTZ, Sprechen Teil 3 – Gemeinsam planen",
     handlungsfeld: "Ämter und Behörden",
@@ -38,6 +39,7 @@ const SITUATIONEN = [
   },
   {
     id: "dtz-b1-teil3-arbeit-betriebsausflug",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1_TEIL3",
     formatLabel: "DTZ, Sprechen Teil 3 – Gemeinsam planen",
     handlungsfeld: "Arbeit",
@@ -57,6 +59,7 @@ const SITUATIONEN = [
   },
   {
     id: "dtz-b1-teil3-arbeitssuche-berufswahl",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1_TEIL3",
     formatLabel: "DTZ, Sprechen Teil 3 – Gemeinsam planen",
     handlungsfeld: "Arbeitssuche",
@@ -76,6 +79,7 @@ const SITUATIONEN = [
   },
   {
     id: "dtz-b1-teil3-weiterbildung-ausbildung",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1_TEIL3",
     formatLabel: "DTZ, Sprechen Teil 3 – Gemeinsam planen",
     handlungsfeld: "Aus- und Weiterbildung",
@@ -95,6 +99,7 @@ const SITUATIONEN = [
   },
   {
     id: "dtz-b1-teil3-banken-geschenk",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1_TEIL3",
     formatLabel: "DTZ, Sprechen Teil 3 – Gemeinsam planen",
     handlungsfeld: "Banken und Versicherungen",
@@ -114,6 +119,7 @@ const SITUATIONEN = [
   },
   {
     id: "dtz-b1-teil3-kinder-kindergeburtstag",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1_TEIL3",
     formatLabel: "DTZ, Sprechen Teil 3 – Gemeinsam planen",
     handlungsfeld: "Betreuung und Ausbildung der Kinder",
@@ -133,6 +139,7 @@ const SITUATIONEN = [
   },
   {
     id: "dtz-b1-teil3-einkaufen-flohmarkt",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1_TEIL3",
     formatLabel: "DTZ, Sprechen Teil 3 – Gemeinsam planen",
     handlungsfeld: "Einkaufen",
@@ -152,6 +159,7 @@ const SITUATIONEN = [
   },
   {
     id: "dtz-b1-teil3-gesundheit-krankenhaus",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1_TEIL3",
     formatLabel: "DTZ, Sprechen Teil 3 – Gemeinsam planen",
     handlungsfeld: "Gesundheit",
@@ -171,6 +179,7 @@ const SITUATIONEN = [
   },
   {
     id: "dtz-b1-teil3-medien-filmabend",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1_TEIL3",
     formatLabel: "DTZ, Sprechen Teil 3 – Gemeinsam planen",
     handlungsfeld: "Mediennutzung",
@@ -190,6 +199,7 @@ const SITUATIONEN = [
   },
   {
     id: "dtz-b1-teil3-mobilitaet-ausflug-natur",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1_TEIL3",
     formatLabel: "DTZ, Sprechen Teil 3 – Gemeinsam planen",
     handlungsfeld: "Mobilität",
@@ -209,6 +219,7 @@ const SITUATIONEN = [
   },
   {
     id: "dtz-b1-teil3-unterricht-pruefung-lernen",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1_TEIL3",
     formatLabel: "DTZ, Sprechen Teil 3 – Gemeinsam planen",
     handlungsfeld: "Unterricht",
@@ -228,6 +239,7 @@ const SITUATIONEN = [
   },
   {
     id: "dtz-b1-teil3-wohnen-muellsammelaktion",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1_TEIL3",
     formatLabel: "DTZ, Sprechen Teil 3 – Gemeinsam planen",
     handlungsfeld: "Wohnen",

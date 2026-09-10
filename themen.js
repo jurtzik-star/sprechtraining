@@ -14,6 +14,7 @@
 const THEMEN = [
   {
     id: "dtz-b1-arztbesuch-1",
+    aktiv: true, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1",
     formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
     title: "Ein Arztbesuch",
@@ -32,6 +33,7 @@ const THEMEN = [
   },
   {
     id: "dtz-b1-arztbesuch-2",
+    aktiv: true, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1",
     formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
     title: "Ein Arztbesuch",
@@ -50,6 +52,7 @@ const THEMEN = [
   },
   {
     id: "dtz-b1-familie-1",
+    aktiv: true, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1",
     formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
     title: "Die Familie",
@@ -66,6 +69,7 @@ const THEMEN = [
   },
   {
     id: "dtz-b1-familie-2",
+    aktiv: true, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1",
     formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
     title: "Die Familie",
@@ -82,6 +86,7 @@ const THEMEN = [
   },
   {
     id: "dtz-b1-amt-wartebereich-1",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1",
     formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
     title: "Im Wartebereich eines Amts",
@@ -99,6 +104,7 @@ const THEMEN = [
   },
   {
     id: "dtz-b1-amt-wartebereich-2",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1",
     formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
     title: "Im Wartebereich eines Amts",
@@ -116,6 +122,7 @@ const THEMEN = [
   },
   {
     id: "dtz-b1-amt-schalter-1",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1",
     formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
     title: "Am Schalter / Beratungstisch",
@@ -133,6 +140,7 @@ const THEMEN = [
   },
   {
     id: "dtz-b1-amt-schalter-2",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     format: "DTZ_B1",
     formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
     title: "Am Schalter / Beratungstisch",

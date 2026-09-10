@@ -136,13 +136,19 @@
     }
   }
 
+  function istFreigeschaltet(aufgabe) {
+    // aktiv fehlt (älterer Eintrag ohne das Feld) -> als freigeschaltet behandeln.
+    return aufgabe.aktiv !== false;
+  }
+
   function initThemaOptions() {
     el.selectThema.innerHTML = "";
 
-    if (THEMEN.length) {
+    const themenAktiv = THEMEN.filter(istFreigeschaltet);
+    if (themenAktiv.length) {
       const groupTeil2 = document.createElement("optgroup");
       groupTeil2.label = "Teil 2 – Bildbeschreibung";
-      THEMEN.forEach((t) => {
+      themenAktiv.forEach((t) => {
         const opt = document.createElement("option");
         opt.value = t.id;
         opt.textContent = aufgabeLabel(t);
@@ -151,10 +157,11 @@
       el.selectThema.appendChild(groupTeil2);
     }
 
-    if (typeof SITUATIONEN !== "undefined" && SITUATIONEN.length) {
+    const situationenAktiv = (typeof SITUATIONEN !== "undefined" ? SITUATIONEN : []).filter(istFreigeschaltet);
+    if (situationenAktiv.length) {
       const groupTeil3 = document.createElement("optgroup");
       groupTeil3.label = "Teil 3 – Gemeinsam planen";
-      SITUATIONEN.forEach((s) => {
+      situationenAktiv.forEach((s) => {
         const opt = document.createElement("option");
         opt.value = s.id;
         opt.textContent = aufgabeLabel(s) + " (" + s.handlungsfeld + ")";
@@ -266,11 +273,11 @@
     if (istTeil3(thema)) {
       el.gespraechHeading.textContent = "3. Gespräch mit deiner Gesprächspartnerin";
       el.gespraechHint.textContent =
-        "Antworte einfach in eigenen Worten – am besten laut, z. B. über die Diktierfunktion deiner Handy-Tastatur. Ihr plant gemeinsam: Mach ruhig eigene Vorschläge, nicht nur Antworten auf Fragen.";
+        "Antworte einfach in eigenen Worten. Ihr plant gemeinsam: Mach ruhig eigene Vorschläge, nicht nur Antworten auf Fragen.";
     } else {
       el.gespraechHeading.textContent = "3. Gespräch mit der Prüferin";
       el.gespraechHint.textContent =
-        "Antworte einfach in eigenen Worten – am besten laut, z. B. über die Diktierfunktion deiner Handy-Tastatur. Die Prüferin stellt dir nach und nach die Fragen, die auch in der echten Prüfung vorkommen können.";
+        "Antworte einfach in eigenen Worten. Die Prüferin stellt dir nach und nach die Fragen, die auch in der echten Prüfung vorkommen können.";
     }
 
     const eroeffnung = istTeil3(thema)
