@@ -79,5 +79,73 @@ const THEMEN = [
       "Machen Sie manchmal Familienurlaube?"
     ],
     zielRedezeitSekunden: 120
+  },
+  {
+    id: "dtz-b1-amt-wartebereich-1",
+    format: "DTZ_B1",
+    formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
+    title: "Im Wartebereich eines Amts",
+    bildLabel: "Bild 1",
+    imageFile: "images/dtz-b1-amt-1.jpg",
+    bildFragen: ["Was sehen Sie auf dem Bild?", "Was für eine Situation zeigt dieses Bild?"],
+    erfahrungsFragen: [
+      "Wie funktioniert das Warten bei einem Amt - zieht man eine Wartemarke oder muss man einen Termin vereinbaren?",
+      "Wie lange haben Sie schon einmal bei einem Amt gewartet?",
+      "Was machen Sie, während Sie warten?",
+      "Welche Ämter kennen Sie in Deutschland, zum Beispiel Bürgeramt, Ausländerbehörde oder Jobcenter?",
+      "Wie ist das in Ihrem Heimatland - muss man dort auch oft warten?"
+    ],
+    zielRedezeitSekunden: 120
+  },
+  {
+    id: "dtz-b1-amt-wartebereich-2",
+    format: "DTZ_B1",
+    formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
+    title: "Im Wartebereich eines Amts",
+    bildLabel: "Bild 2",
+    imageFile: "images/dtz-b1-amt-2.jpg",
+    bildFragen: ["Was sehen Sie auf dem Bild?", "Was für eine Situation zeigt dieses Bild?"],
+    erfahrungsFragen: [
+      "Wie funktioniert das Warten bei einem Amt - zieht man eine Wartemarke oder muss man einen Termin vereinbaren?",
+      "Wie lange haben Sie schon einmal bei einem Amt gewartet?",
+      "Was machen Sie, während Sie warten?",
+      "Welche Ämter kennen Sie in Deutschland, zum Beispiel Bürgeramt, Ausländerbehörde oder Jobcenter?",
+      "Wie ist das in Ihrem Heimatland - muss man dort auch oft warten?"
+    ],
+    zielRedezeitSekunden: 120
+  },
+  {
+    id: "dtz-b1-amt-schalter-1",
+    format: "DTZ_B1",
+    formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
+    title: "Am Schalter / Beratungstisch",
+    bildLabel: "Bild 1",
+    imageFile: "images/dtz-b1-amt-3.jpg",
+    bildFragen: ["Was sehen Sie auf dem Bild?", "Was für eine Situation zeigt dieses Bild?"],
+    erfahrungsFragen: [
+      "Welche Unterlagen muss man zu einem Amt mitbringen?",
+      "Haben Sie schon einmal ein Formular bei einem Amt ausgefüllt? Wie war das?",
+      "Was machen Sie, wenn Sie eine Frage nicht verstehen oder ein Formular nicht ausfüllen können?",
+      "Wer kann Ihnen bei Behördengängen helfen?",
+      "Waren Sie schon einmal bei einer Ummeldung, zum Beispiel nach einem Umzug? Wie war das?"
+    ],
+    zielRedezeitSekunden: 120
+  },
+  {
+    id: "dtz-b1-amt-schalter-2",
+    format: "DTZ_B1",
+    formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
+    title: "Am Schalter / Beratungstisch",
+    bildLabel: "Bild 2",
+    imageFile: "images/dtz-b1-amt-4.jpg",
+    bildFragen: ["Was sehen Sie auf dem Bild?", "Was für eine Situation zeigt dieses Bild?"],
+    erfahrungsFragen: [
+      "Welche Unterlagen muss man zu einem Amt mitbringen?",
+      "Haben Sie schon einmal ein Formular bei einem Amt ausgefüllt? Wie war das?",
+      "Was machen Sie, wenn Sie eine Frage nicht verstehen oder ein Formular nicht ausfüllen können?",
+      "Wer kann Ihnen bei Behördengängen helfen?",
+      "Waren Sie schon einmal bei einer Ummeldung, zum Beispiel nach einem Umzug? Wie war das?"
+    ],
+    zielRedezeitSekunden: 120
   }
 ];
