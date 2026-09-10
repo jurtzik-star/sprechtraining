@@ -28,10 +28,11 @@ const CONFIG = {
   // Übermittlung an die Lehrkraft.
   GOOGLE_FORM_ACTION_URL: "https://docs.google.com/forms/d/e/1FAIpQLSdHVDYD1TKeXYndodDpRYdGTh1Jj9ZVF4sRHSA4OFnyn-yGRw/formResponse",
   GOOGLE_FORM_ACTION_URL_BY_KURS: {
-    "B1 Oberndorf (KL T. Jurtzik)": "https://docs.google.com/forms/d/e/1FAIpQLSdHVDYD1TKeXYndodDpRYdGTh1Jj9ZVF4sRHSA4OFnyn-yGRw/formResponse"
-    // Sobald du je ein eigenes (dupliziertes) Formular für BSK-B1+ und
-    // BSK-B2 angelegt hast, hier ergänzen, z. B.:
-    // "BSK-B1+ Rottweil (KL T. Jurtzik)": "https://docs.google.com/forms/d/e/.../formResponse"
+    "B1 Oberndorf (KL T. Jurtzik)": "https://docs.google.com/forms/d/e/1FAIpQLSdHVDYD1TKeXYndodDpRYdGTh1Jj9ZVF4sRHSA4OFnyn-yGRw/formResponse",
+    "BSK-B1+ Rottweil (KL T. Jurtzik)": "https://docs.google.com/forms/d/e/1FAIpQLScscORmZvtnkFPQfvtAaSNc3uYtRareC1Kve5gMzkXv67eeSA/formResponse"
+    // Sobald du auch für BSK-B2 ein eigenes (dupliziertes) Formular
+    // angelegt hast, hier ergänzen, z. B.:
+    // "BSK-B2 Rottweil (KL T. Jurtzik)": "https://docs.google.com/forms/d/e/.../formResponse"
   },
   // Gleiche entry-IDs gelten für alle Kurse, solange die anderen
   // Formulare als Kopie dieses Formulars angelegt werden (wie bei
