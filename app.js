@@ -35,16 +35,46 @@
     userTurns: 0
   };
 
-  // ---------- Aufgaben: Teil 2 (Bildbeschreibung) + Teil 3 (Gemeinsam planen) ----------
-  // Beide Listen werden zu einer einzigen Auswahl zusammengeführt (mit
+  // ---------- Aufgaben: DTZ Teil 2/3 (B1, BSK-B2) + telc-B2 Teil 1/2/3 (BSK-B1+) ----------
+  // Alle Listen werden zu einer einzigen Auswahl zusammengeführt (mit
   // optgroups getrennt) und anhand von aufgabe.format unterschiedlich
-  // dargestellt/behandelt.
-  const ALLE_AUFGABEN = THEMEN.concat(typeof SITUATIONEN !== "undefined" ? SITUATIONEN : []);
+  // dargestellt/behandelt. Neues Format: einfach eine weitere Liste hier
+  // ergänzen und in initThemaOptions()/detailsHtml()/goToGespraech()/
+  // themaForWorker() einen weiteren Fall ergänzen.
+  const ALLE_AUFGABEN = THEMEN
+    .concat(typeof SITUATIONEN !== "undefined" ? SITUATIONEN : [])
+    .concat(typeof TELC_TEIL1 !== "undefined" ? TELC_TEIL1 : [])
+    .concat(typeof TELC_TEIL2 !== "undefined" ? TELC_TEIL2 : [])
+    .concat(typeof TELC_TEIL3 !== "undefined" ? TELC_TEIL3 : []);
+
   function istTeil3(aufgabe) {
     return !!aufgabe && aufgabe.format === "DTZ_B1_TEIL3";
   }
+  function istTelcTeil1(aufgabe) {
+    return !!aufgabe && aufgabe.format === "TELC_B2_TEIL1";
+  }
+  function istTelcTeil2(aufgabe) {
+    return !!aufgabe && aufgabe.format === "TELC_B2_TEIL2";
+  }
+  function istTelcTeil3(aufgabe) {
+    return !!aufgabe && aufgabe.format === "TELC_B2_TEIL3";
+  }
+  // Formate, in denen die KI keine Prüferin, sondern eine gleichberechtigte
+  // Gesprächspartnerin/einen Gesprächspartner spielt (Rollenspiel statt
+  // Prüfungsgespräch).
+  function istGespraechspartnerFormat(aufgabe) {
+    return istTeil3(aufgabe) || istTelcTeil2(aufgabe) || istTelcTeil3(aufgabe);
+  }
+  // Manche Themen (aktuell: telc-B2-Themen für BSK-B1+) sind über das Feld
+  // "kurse" nur für bestimmte Kurse gedacht. Fehlt das Feld, gilt das Thema
+  // für alle Kurse (bisheriges Verhalten der DTZ-Themen).
+  function passtZuKurs(aufgabe) {
+    return !Array.isArray(aufgabe.kurse) || aufgabe.kurse.includes(state.kurs);
+  }
   function aufgabeLabel(aufgabe) {
-    return istTeil3(aufgabe) ? aufgabe.situation : aufgabe.title + " (" + aufgabe.bildLabel + ")";
+    if (istTeil3(aufgabe) || istTelcTeil3(aufgabe)) return aufgabe.situation;
+    if (istTelcTeil1(aufgabe) || istTelcTeil2(aufgabe)) return aufgabe.title;
+    return aufgabe.title + " (" + aufgabe.bildLabel + ")";
   }
 
   // ---------- Dynamische Fußzeile ----------
@@ -144,7 +174,9 @@
   function initThemaOptions() {
     el.selectThema.innerHTML = "";
 
-    const themenAktiv = THEMEN.filter(istFreigeschaltet);
+    const sichtbar = (liste) => liste.filter((a) => istFreigeschaltet(a) && passtZuKurs(a));
+
+    const themenAktiv = sichtbar(THEMEN);
     if (themenAktiv.length) {
       const groupTeil2 = document.createElement("optgroup");
       groupTeil2.label = "Teil 2 – Bildbeschreibung";
@@ -157,7 +189,7 @@
       el.selectThema.appendChild(groupTeil2);
     }
 
-    const situationenAktiv = (typeof SITUATIONEN !== "undefined" ? SITUATIONEN : []).filter(istFreigeschaltet);
+    const situationenAktiv = sichtbar(typeof SITUATIONEN !== "undefined" ? SITUATIONEN : []);
     if (situationenAktiv.length) {
       const groupTeil3 = document.createElement("optgroup");
       groupTeil3.label = "Teil 3 – Gemeinsam planen";
@@ -168,6 +200,45 @@
         groupTeil3.appendChild(opt);
       });
       el.selectThema.appendChild(groupTeil3);
+    }
+
+    const telc1Aktiv = sichtbar(typeof TELC_TEIL1 !== "undefined" ? TELC_TEIL1 : []);
+    if (telc1Aktiv.length) {
+      const groupTelc1 = document.createElement("optgroup");
+      groupTelc1.label = "Teil 1 – Über ein Thema sprechen";
+      telc1Aktiv.forEach((t) => {
+        const opt = document.createElement("option");
+        opt.value = t.id;
+        opt.textContent = aufgabeLabel(t);
+        groupTelc1.appendChild(opt);
+      });
+      el.selectThema.appendChild(groupTelc1);
+    }
+
+    const telc2Aktiv = sichtbar(typeof TELC_TEIL2 !== "undefined" ? TELC_TEIL2 : []);
+    if (telc2Aktiv.length) {
+      const groupTelc2 = document.createElement("optgroup");
+      groupTelc2.label = "Teil 2 – Mit Kolleg:innen sprechen";
+      telc2Aktiv.forEach((t) => {
+        const opt = document.createElement("option");
+        opt.value = t.id;
+        opt.textContent = aufgabeLabel(t);
+        groupTelc2.appendChild(opt);
+      });
+      el.selectThema.appendChild(groupTelc2);
+    }
+
+    const telc3Aktiv = sichtbar(typeof TELC_TEIL3 !== "undefined" ? TELC_TEIL3 : []);
+    if (telc3Aktiv.length) {
+      const groupTelc3 = document.createElement("optgroup");
+      groupTelc3.label = "Teil 3 – Lösungswege diskutieren";
+      telc3Aktiv.forEach((t) => {
+        const opt = document.createElement("option");
+        opt.value = t.id;
+        opt.textContent = aufgabeLabel(t);
+        groupTelc3.appendChild(opt);
+      });
+      el.selectThema.appendChild(groupTelc3);
     }
 
     renderThemaDetails();
@@ -192,9 +263,12 @@
     const imgTag = situation.imageFile
       ? `<img class="situation-foto" src="${situation.imageFile}" alt="${escapeHtml(situation.situation)}" onerror="this.remove()">`
       : "";
+    const handlungsfeldTag = situation.handlungsfeld
+      ? ` <span style="font-weight:400; color:var(--color-muted);">(${escapeHtml(situation.handlungsfeld)})</span>`
+      : "";
     return `
       ${imgTag}
-      <h3>${escapeHtml(situation.situation)} <span style="font-weight:400; color:var(--color-muted);">(${escapeHtml(situation.handlungsfeld)})</span></h3>
+      <h3>${escapeHtml(situation.situation)}${handlungsfeldTag}</h3>
       <p><em>${escapeHtml(situation.formatLabel)}</em></p>
       <p class="situation-text"><strong>Situation:</strong> ${escapeHtml(situation.situationText)}</p>
       <p class="situation-text"><strong>Aufgabe:</strong> ${escapeHtml(situation.aufgabeText)}</p>
@@ -207,8 +281,31 @@
     `;
   }
 
+  function telcTeil1DetailsHtml(aufgabe) {
+    return `
+      <h3>${escapeHtml(aufgabe.title)}</h3>
+      <p><em>${escapeHtml(aufgabe.formatLabel)}</em></p>
+      <p><strong>Leitfrage:</strong> ${escapeHtml(aufgabe.leitfrage)}</p>
+      <p><strong>Das kann dir helfen:</strong></p>
+      <ul>${aufgabe.hilfen.map((h) => `<li>${escapeHtml(h)}</li>`).join("")}</ul>
+    `;
+  }
+
+  function telcTeil2DetailsHtml(aufgabe) {
+    return `
+      <h3>${escapeHtml(aufgabe.title)}</h3>
+      <p><em>${escapeHtml(aufgabe.formatLabel)}</em></p>
+      <p>Deine Gesprächspartnerin/dein Gesprächspartner eröffnet gleich zwei kurze, unabhängige Gespräche mit dir.</p>
+      <p><strong>Das kann beim Antworten helfen:</strong></p>
+      <ul>${aufgabe.hilfen.map((h) => `<li>${escapeHtml(h)}</li>`).join("")}</ul>
+    `;
+  }
+
   function detailsHtml(aufgabe) {
-    return istTeil3(aufgabe) ? situationDetailsHtml(aufgabe) : themaDetailsHtml(aufgabe);
+    if (istTeil3(aufgabe) || istTelcTeil3(aufgabe)) return situationDetailsHtml(aufgabe);
+    if (istTelcTeil1(aufgabe)) return telcTeil1DetailsHtml(aufgabe);
+    if (istTelcTeil2(aufgabe)) return telcTeil2DetailsHtml(aufgabe);
+    return themaDetailsHtml(aufgabe);
   }
 
   function renderThemaDetails() {
@@ -270,19 +367,34 @@
 
     el.gespraechThemaSummary.innerHTML = detailsHtml(thema);
 
-    if (istTeil3(thema)) {
+    if (istTelcTeil1(thema)) {
+      el.gespraechHeading.textContent = "3. Gespräch mit der Prüferin";
+      el.gespraechHint.textContent =
+        "Sprich zuerst kurz und zusammenhängend über die Leitfrage (ca. 1 Minute). Danach stellt dir die Prüferin noch ein bis zwei Anschlussfragen.";
+    } else if (istTelcTeil2(thema)) {
+      el.gespraechHeading.textContent = "3. Gespräch mit deiner Kollegin/deinem Kollegen";
+      el.gespraechHint.textContent =
+        "Reagiere kurz und natürlich, wie in einem echten Gespräch mit Kolleg:innen. Nach der ersten Frage kommt noch eine zweite, unabhängige Frage.";
+    } else if (istTeil3(thema) || istTelcTeil3(thema)) {
       el.gespraechHeading.textContent = "3. Gespräch mit deiner Gesprächspartnerin";
       el.gespraechHint.textContent =
-        "Antworte einfach in eigenen Worten. Ihr plant gemeinsam: Mach ruhig eigene Vorschläge, nicht nur Antworten auf Fragen.";
+        "Antworte einfach in eigenen Worten. Ihr plant/verhandelt gemeinsam: Mach ruhig eigene Vorschläge, nicht nur Antworten auf Fragen.";
     } else {
       el.gespraechHeading.textContent = "3. Gespräch mit der Prüferin";
       el.gespraechHint.textContent =
         "Antworte einfach in eigenen Worten. Die Prüferin stellt dir nach und nach die Fragen, die auch in der echten Prüfung vorkommen können.";
     }
 
-    const eroeffnung = istTeil3(thema)
-      ? thema.aufgabeText + " Fangen wir mit der ersten Frage an: " + thema.stichpunkte[0]
-      : thema.bildFragen.join(" ");
+    let eroeffnung;
+    if (istTelcTeil1(thema)) {
+      eroeffnung = thema.leitfrage;
+    } else if (istTelcTeil2(thema)) {
+      eroeffnung = thema.frage1;
+    } else if (istTeil3(thema) || istTelcTeil3(thema)) {
+      eroeffnung = thema.aufgabeText + " Fangen wir mit der ersten Frage an: " + thema.stichpunkte[0];
+    } else {
+      eroeffnung = thema.bildFragen.join(" ");
+    }
     appendBubble("assistant", eroeffnung);
     state.history.push({ role: "assistant", content: eroeffnung });
 
@@ -412,7 +524,7 @@
   }
 
   function themaForWorker(thema) {
-    if (istTeil3(thema)) {
+    if (istTeil3(thema) || istTelcTeil3(thema)) {
       return {
         format: thema.format,
         formatLabel: thema.formatLabel,
@@ -421,6 +533,28 @@
         situationText: thema.situationText,
         aufgabeText: thema.aufgabeText,
         stichpunkte: thema.stichpunkte,
+        zielRedezeitSekunden: thema.zielRedezeitSekunden
+      };
+    }
+    if (istTelcTeil1(thema)) {
+      return {
+        format: thema.format,
+        formatLabel: thema.formatLabel,
+        title: thema.title,
+        leitfrage: thema.leitfrage,
+        hilfen: thema.hilfen,
+        moeglicheNachfragen: thema.moeglicheNachfragen,
+        zielRedezeitSekunden: thema.zielRedezeitSekunden
+      };
+    }
+    if (istTelcTeil2(thema)) {
+      return {
+        format: thema.format,
+        formatLabel: thema.formatLabel,
+        title: thema.title,
+        frage1: thema.frage1,
+        frage2: thema.frage2,
+        hilfen: thema.hilfen,
         zielRedezeitSekunden: thema.zielRedezeitSekunden
       };
     }
@@ -479,7 +613,7 @@
       const labels = {
         vollstaendigkeit: "Vollständigkeit (alle Punkte behandelt)",
         verstaendlichkeit: "Verständlichkeit / Sprachrichtigkeit",
-        interaktion: istTeil3(state.thema) ? "Eigene Vorschläge / Verhandeln" : "Reaktion auf Rückfragen",
+        interaktion: istGespraechspartnerFormat(state.thema) ? "Eigene Vorschläge / Verhandeln" : "Reaktion auf Rückfragen",
         umfang: "Umfang / Ausführlichkeit"
       };
       html += `<div class="feedback-block"><h3>Bewertung nach Kriterien</h3>`;
@@ -504,8 +638,9 @@
 
   // ---------- Transkript als lesbaren Klartext aufbereiten ----------
   function formatTranskript(history) {
+    const partnerLabel = istGespraechspartnerFormat(state.thema) ? "Gesprächspartner:in" : "Prüferin";
     return history
-      .map((m) => (m.role === "assistant" ? "Prüferin: " : state.name + ": ") + m.content)
+      .map((m) => (m.role === "assistant" ? partnerLabel + ": " : state.name + ": ") + m.content)
       .join("\n");
   }
 
