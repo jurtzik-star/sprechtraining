@@ -31,10 +31,19 @@
 
    Jedes Thema hat ein Feld "kapitel" (BSK-B1+-Kapitelnummer, zu der es
    inhaltlich passt) und "kurse" (aktuell nur BSK-B1+, da dieses Format
-   speziell für den Brückenkurs gedacht ist). Nur Kapitel 1-3 sind bisher
-   ausgearbeitet, weil die BSK-B1+-App bisher nur diese drei Kapitel hat
-   (siehe [[wortschatz-apps]] in Thomas' Notizen) - Kapitel 4-7 folgen,
+   speziell für den Brückenkurs gedacht ist). Jedes Kapitel bekommt eine
+   eigene, kapitelpassende Übung zu ALLEN DREI Prüfungsteilen (Teil 1,
+   Teil 2, Teil 3) - keine Progression, bei der einzelne Prüfungsteile erst
+   in späteren Kapiteln dazukommen. Die "progressive Steigerung" liegt im
+   Inhalt/Thema je Kapitel, nicht im Prüfungsteil. Nur Kapitel 1-3 sind
+   bisher ausgearbeitet, weil die BSK-B1+-App bisher nur diese drei Kapitel
+   hat (siehe [[wortschatz-apps]] in Thomas' Notizen) - Kapitel 4-7 folgen,
    sobald diese Kapitel in der Wortschatz-App gebaut werden.
+
+   Kapitel-Freischaltung (Feld "aktiv"): nur das jeweils aktuelle Kapitel
+   der BSK-B1+ (CURRENT_CHAPTER in der Wortschatz-App) sollte "aktiv: true"
+   haben, alle späteren Kapitel "aktiv: false" - Thomas schaltet sie frei,
+   sobald der Kurs dort angekommen ist.
 
    Alle Inhalte sind komplett neu verfasst (keine Lehrwerkstexte kopiert),
    orientiert an der offiziellen Prüfungsstruktur.
@@ -175,6 +184,40 @@ const TELC_TEIL1 = [
 /* ---------------- Teil 2: Mit Kolleginnen und Kollegen sprechen ---------------- */
 const TELC_TEIL2 = [
   {
+    id: "telc-b2-teil2-weiterbildung-im-gespraech",
+    aktiv: true,
+    kurse: TELC_KURS_BSKB1PLUS,
+    format: "TELC_B2_TEIL2",
+    formatLabel: "telc Zertifikat Beruf B2, Sprechen Teil 2 – mit Kolleginnen und Kollegen sprechen",
+    kapitel: 1,
+    title: "Weiterbildung im Gespräch",
+    frage1: "Ich überlege, eine Weiterbildung zu machen. Hast du da Erfahrung?",
+    frage2: "Wärst du auch mal an einer Weiterbildung zusammen mit mir interessiert?",
+    hilfen: [
+      "Ja, das sehe ich auch so. / Nein, das finde ich nicht.",
+      "Ich würde sagen ... / Meiner Erfahrung nach ...",
+      "Was denkst du? / Wie ist das bei euch?"
+    ],
+    zielRedezeitSekunden: 90
+  },
+  {
+    id: "telc-b2-teil2-erfahrungen-arbeitssuche",
+    aktiv: false,
+    kurse: TELC_KURS_BSKB1PLUS,
+    format: "TELC_B2_TEIL2",
+    formatLabel: "telc Zertifikat Beruf B2, Sprechen Teil 2 – mit Kolleginnen und Kollegen sprechen",
+    kapitel: 2,
+    title: "Erfahrungen mit der Arbeitssuche",
+    frage1: "Ich habe gehört, du hast mal über eine Zeitarbeitsfirma gearbeitet. Wie war das?",
+    frage2: "Hast du einen Tipp, wo man gute Stellenanzeigen findet?",
+    hilfen: [
+      "Ja, das stimmt. / Nein, das war bei mir anders.",
+      "Ich würde sagen ... / Meiner Erfahrung nach ...",
+      "Was denkst du? / Wie ist das bei euch?"
+    ],
+    zielRedezeitSekunden: 90
+  },
+  {
     id: "telc-b2-teil2-erster-arbeitstag",
     aktiv: false,
     kurse: TELC_KURS_BSKB1PLUS,
@@ -195,6 +238,42 @@ const TELC_TEIL2 = [
 
 /* ---------------- Teil 3: Lösungswege diskutieren ---------------- */
 const TELC_TEIL3 = [
+  {
+    id: "telc-b2-teil3-weiterbildung-planen",
+    aktiv: true,
+    kurse: TELC_KURS_BSKB1PLUS,
+    format: "TELC_B2_TEIL3",
+    formatLabel: "telc Zertifikat Beruf B2, Sprechen Teil 3 – Lösungswege diskutieren",
+    kapitel: 1,
+    situation: "Weiterbildung planen",
+    situationText: "Eine Kollegin/ein Kollege möchte sich beruflich weiterentwickeln und eine Weiterbildung machen, weiß aber noch nicht genau, welche Weiterbildung passt und wie sie neben der Arbeit zu organisieren wäre.",
+    aufgabeText: "Überlegen Sie gemeinsam, wie die Kollegin/der Kollege am besten vorgehen sollte.",
+    stichpunkte: [
+      "Welche Weiterbildung passt am besten?",
+      "Wie findet man passende Angebote?",
+      "Wie lässt sich die Weiterbildung neben der Arbeit organisieren (Zeit, Kosten)?",
+      "Wer kann noch beraten?"
+    ],
+    zielRedezeitSekunden: 180
+  },
+  {
+    id: "telc-b2-teil3-bewerbungen-ohne-erfolg",
+    aktiv: false,
+    kurse: TELC_KURS_BSKB1PLUS,
+    format: "TELC_B2_TEIL3",
+    formatLabel: "telc Zertifikat Beruf B2, Sprechen Teil 3 – Lösungswege diskutieren",
+    kapitel: 2,
+    situation: "Bewerbungen ohne Erfolg",
+    situationText: "Eine Kollegin/ein Kollege hat sich schon auf viele Stellen beworben, aber bisher keine einzige Rückmeldung bekommen. Sie/er ist frustriert und weiß nicht, woran es liegen könnte.",
+    aufgabeText: "Überlegen Sie gemeinsam, was die Kollegin/der Kollege ändern könnte.",
+    stichpunkte: [
+      "Was könnte an den Bewerbungsunterlagen verbessert werden?",
+      "Welche anderen Wege der Arbeitssuche gibt es noch?",
+      "Wer kann bei der Arbeitssuche zusätzlich helfen (Arbeitsagentur, Zeitarbeit)?",
+      "Wie bleibt man motiviert?"
+    ],
+    zielRedezeitSekunden: 180
+  },
   {
     id: "telc-b2-teil3-neuer-kollege-einarbeitung",
     aktiv: false,
