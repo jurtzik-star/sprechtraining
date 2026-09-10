@@ -61,6 +61,7 @@ const TELC_TEIL1 = [
     formatLabel: "telc Zertifikat Beruf B2, Sprechen Teil 1 – über ein Thema sprechen",
     kapitel: 1,
     title: "Meine Berufswahl",
+    imageFile: "images/telc-b2-berufswahl.jpg",
     leitfrage: "Beschreiben Sie die Erfahrungen und Ereignisse, die Ihre Berufswahl beeinflusst haben.",
     hilfen: [
       "Welchen Beruf haben Sie gewählt (oder möchten Sie wählen)? Warum?",
@@ -82,6 +83,7 @@ const TELC_TEIL1 = [
     formatLabel: "telc Zertifikat Beruf B2, Sprechen Teil 1 – über ein Thema sprechen",
     kapitel: 1,
     title: "Ein berufliches Vorbild",
+    imageFile: "images/telc-b2-vorbild.jpg",
     leitfrage: "Beschreiben Sie eine Person aus Ihrem Umfeld, die für Sie ein berufliches Vorbild ist.",
     hilfen: [
       "Wer ist diese Person, und woher kennen Sie sie?",
@@ -191,6 +193,7 @@ const TELC_TEIL2 = [
     formatLabel: "telc Zertifikat Beruf B2, Sprechen Teil 2 – mit Kolleginnen und Kollegen sprechen",
     kapitel: 1,
     title: "Weiterbildung im Gespräch",
+    imageFile: "images/telc-b2-weiterbildung-gespraech.jpg",
     frage1: "Ich überlege, eine Weiterbildung zu machen. Hast du da Erfahrung?",
     frage2: "Wärst du auch mal an einer Weiterbildung zusammen mit mir interessiert?",
     hilfen: [
@@ -246,6 +249,7 @@ const TELC_TEIL3 = [
     formatLabel: "telc Zertifikat Beruf B2, Sprechen Teil 3 – Lösungswege diskutieren",
     kapitel: 1,
     situation: "Weiterbildung planen",
+    imageFile: "images/telc-b2-weiterbildung-planen.jpg",
     situationText: "Eine Kollegin/ein Kollege möchte sich beruflich weiterentwickeln und eine Weiterbildung machen, weiß aber noch nicht genau, welche Weiterbildung passt und wie sie neben der Arbeit zu organisieren wäre.",
     aufgabeText: "Überlegen Sie gemeinsam, wie die Kollegin/der Kollege am besten vorgehen sollte.",
     stichpunkte: [

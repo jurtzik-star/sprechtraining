@@ -282,7 +282,11 @@
   }
 
   function telcTeil1DetailsHtml(aufgabe) {
+    const imgTag = aufgabe.imageFile
+      ? `<img src="${aufgabe.imageFile}" alt="${escapeHtml(aufgabe.title)}" onerror="this.remove()">`
+      : "";
     return `
+      ${imgTag}
       <h3>${escapeHtml(aufgabe.title)}</h3>
       <p><em>${escapeHtml(aufgabe.formatLabel)}</em></p>
       <p><strong>Leitfrage:</strong> ${escapeHtml(aufgabe.leitfrage)}</p>
@@ -292,7 +296,11 @@
   }
 
   function telcTeil2DetailsHtml(aufgabe) {
+    const imgTag = aufgabe.imageFile
+      ? `<img src="${aufgabe.imageFile}" alt="${escapeHtml(aufgabe.title)}" onerror="this.remove()">`
+      : "";
     return `
+      ${imgTag}
       <h3>${escapeHtml(aufgabe.title)}</h3>
       <p><em>${escapeHtml(aufgabe.formatLabel)}</em></p>
       <p>Deine Gesprächspartnerin/dein Gesprächspartner eröffnet gleich zwei kurze, unabhängige Gespräche mit dir.</p>
