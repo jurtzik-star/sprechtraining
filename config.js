@@ -26,17 +26,23 @@ const CONFIG = {
   // Schreibtraining). Solange hier "DEINE-FORM-ID" steht, wird nichts
   // übermittelt - die App funktioniert trotzdem normal, nur ohne
   // Übermittlung an die Lehrkraft.
-  GOOGLE_FORM_ACTION_URL: "https://docs.google.com/forms/d/e/DEINE-FORM-ID/formResponse",
+  GOOGLE_FORM_ACTION_URL: "https://docs.google.com/forms/d/e/1FAIpQLSdHVDYD1TKeXYndodDpRYdGTh1Jj9ZVF4sRHSA4OFnyn-yGRw/formResponse",
   GOOGLE_FORM_ACTION_URL_BY_KURS: {
-    // z. B. "B1 Oberndorf (KL T. Jurtzik)": "https://docs.google.com/forms/d/e/.../formResponse"
+    "B1 Oberndorf (KL T. Jurtzik)": "https://docs.google.com/forms/d/e/1FAIpQLSdHVDYD1TKeXYndodDpRYdGTh1Jj9ZVF4sRHSA4OFnyn-yGRw/formResponse"
+    // Sobald du je ein eigenes (dupliziertes) Formular für BSK-B1+ und
+    // BSK-B2 angelegt hast, hier ergänzen, z. B.:
+    // "BSK-B1+ Rottweil (KL T. Jurtzik)": "https://docs.google.com/forms/d/e/.../formResponse"
   },
+  // Gleiche entry-IDs gelten für alle Kurse, solange die anderen
+  // Formulare als Kopie dieses Formulars angelegt werden (wie bei
+  // Schreibtraining) - Feldstruktur/Reihenfolge bleibt dann identisch.
   GOOGLE_FORM_ENTRY_IDS: {
-    name: "entry.XXXXXXXXX",
-    kurs: "entry.XXXXXXXXX",
-    thema: "entry.XXXXXXXXX",
-    transkript: "entry.XXXXXXXXX",
-    gesamteinschaetzung: "entry.XXXXXXXXX",
-    bewertungDetails: "entry.XXXXXXXXX"
+    name: "entry.1041564610",
+    kurs: "entry.2069668552",
+    thema: "entry.1984278889",
+    transkript: "entry.1590786347",
+    gesamteinschaetzung: "entry.1457417704",
+    bewertungDetails: "entry.321387827"
   },
 
   // Auswahlliste der Kurse/Gruppen im Dropdown - gleiche Liste wie bei
