@@ -1,11 +1,12 @@
 /* ============================================================
    telc-b2.js
-   Sprechthemen für den Brückenkurs BSK-B1+, ausgerichtet am Format
-   "telc Zertifikat Beruf B2" (Sprechen), nicht am DTZ-B1-Format aus
-   themen.js/situationen.js - das passt inhaltlich/sprachlich nicht mehr
-   zum Kursniveau. Ziel: eine progressive Steigerung passend zu den
-   BSK-B1+-Kapiteln, die nahtlos in die spätere telc-B2-Sprechen-Praxis
-   von BSK-B2 übergeht.
+   Sprechthemen im Format "telc Zertifikat Beruf B2" (Sprechen), für die
+   Kurse BSK-B1+ und BSK-B2 - beide haben hier ihren eigenen Themenpool
+   (Feld "kurse"), getrennt vom DTZ-B1-Format aus themen.js/situationen.js,
+   das nur noch für B1 gilt (Feld "kapitel" ist die jeweils eigene
+   Kapitelnummer des Kurses, keine kursübergreifende Zählung). Ziel für
+   BSK-B1+: eine progressive Steigerung passend zu dessen Kapiteln, die
+   nahtlos in die spätere telc-B2-Sprechen-Praxis von BSK-B2 übergeht.
 
    Drei Prüfungsteile, jeweils als eigenes Array (analog zu Teil 2/Teil 3
    in themen.js/situationen.js) und in app.js/worker.js als eigene
@@ -50,6 +51,7 @@
    ============================================================ */
 
 const TELC_KURS_BSKB1PLUS = ["BSK-B1+ Rottweil (KL T. Jurtzik)"];
+const TELC_KURS_BSKB2 = ["BSK-B2 Rottweil (KL T. Jurtzik)"];
 
 /* ---------------- Teil 1: Über ein Thema sprechen ---------------- */
 const TELC_TEIL1 = [
@@ -180,6 +182,52 @@ const TELC_TEIL1 = [
       "Was macht für Sie persönlich Spaß an der Arbeit?"
     ],
     zielRedezeitSekunden: 90
+  },
+
+  /* ---- BSK-B2, Kapitel 1 (Berufsorientierung) ---- */
+  {
+    id: "telc-b2-bskb2-beruflicher-einstieg",
+    aktiv: true,
+    kurse: TELC_KURS_BSKB2,
+    format: "TELC_B2_TEIL1",
+    formatLabel: "telc Zertifikat Beruf B2, Sprechen Teil 1 – über ein Thema sprechen",
+    kapitel: 1,
+    title: "Mein beruflicher Einstieg",
+    imageFile: "images/telc-b2-bskb2-beruflicher-einstieg.jpg",
+    leitfrage: "Beschreiben Sie Ihren Einstieg in einen neuen Beruf oder eine neue Stelle.",
+    hilfen: [
+      "Wie war Ihr erster Arbeitstag oder Ihre erste Zeit in der neuen Stelle?",
+      "Wer hat Ihnen beim Einstieg geholfen, zum Beispiel Kolleg:innen oder eine Einarbeitung?",
+      "Was war am Anfang besonders neu oder ungewohnt für Sie?"
+    ],
+    moeglicheNachfragen: [
+      "Was hätten Sie sich am Anfang mehr gewünscht?",
+      "Wie lange hat es gedauert, bis Sie sich richtig eingearbeitet gefühlt haben?",
+      "Was würden Sie jemandem raten, der gerade neu in einem Betrieb anfängt?"
+    ],
+    zielRedezeitSekunden: 90
+  },
+  {
+    id: "telc-b2-bskb2-beratung-geholfen",
+    aktiv: true,
+    kurse: TELC_KURS_BSKB2,
+    format: "TELC_B2_TEIL1",
+    formatLabel: "telc Zertifikat Beruf B2, Sprechen Teil 1 – über ein Thema sprechen",
+    kapitel: 1,
+    title: "Eine Beratung, die mir geholfen hat",
+    imageFile: "images/telc-b2-bskb2-beratung-geholfen.jpg",
+    leitfrage: "Beschreiben Sie eine Beratung, die Ihnen beruflich weitergeholfen hat.",
+    hilfen: [
+      "Um welche Art von Beratung ging es, zum Beispiel Berufsberatung oder ein Gespräch mit einer Kollegin/einem Kollegen?",
+      "Wer hat Sie beraten, und wie ist das Gespräch abgelaufen?",
+      "Was haben Sie aus der Beratung konkret mitgenommen?"
+    ],
+    moeglicheNachfragen: [
+      "Was hat Ihnen an dieser Beratung besonders geholfen?",
+      "Haben Sie die Ratschläge auch wirklich umgesetzt?",
+      "Würden Sie diese Beratungsstelle oder Person auch anderen empfehlen?"
+    ],
+    zielRedezeitSekunden: 90
   }
 ];
 
@@ -234,6 +282,26 @@ const TELC_TEIL2 = [
       "Ja, das sehe ich auch so. / Nein, das finde ich nicht.",
       "Ich würde sagen ... / Meiner Erfahrung nach ...",
       "Was denkst du? / Wie ist das bei euch?"
+    ],
+    zielRedezeitSekunden: 90
+  },
+
+  /* ---- BSK-B2, Kapitel 1 (Berufsorientierung) ---- */
+  {
+    id: "telc-b2-bskb2-du-oder-sie",
+    aktiv: true,
+    kurse: TELC_KURS_BSKB2,
+    format: "TELC_B2_TEIL2",
+    formatLabel: "telc Zertifikat Beruf B2, Sprechen Teil 2 – mit Kolleginnen und Kollegen sprechen",
+    kapitel: 1,
+    title: "Du oder Sie?",
+    imageFile: "images/telc-b2-bskb2-du-oder-sie.jpg",
+    frage1: "Bei uns im Team duzen sich eigentlich alle. Ist das für dich auch okay, oder redest du lieber im Sie?",
+    frage2: "Wie ist das eigentlich bei euch im Kurs oder in deinem letzten Job – duzt man sich da normalerweise?",
+    hilfen: [
+      "Ja, das ist für mich in Ordnung. / Nein, ich bevorzuge eigentlich ...",
+      "Ich würde sagen ... / In meiner Erfahrung ...",
+      "Was denkst du? / Wie handhabt ihr das?"
     ],
     zielRedezeitSekunden: 90
   }
@@ -293,6 +361,27 @@ const TELC_TEIL3 = [
       "Was braucht der neue Kollege im Moment am meisten?",
       "Wie oft sollte es feste Zeit für Fragen geben?",
       "Was könnt ihr allgemein besser machen, damit neue Kolleg:innen sich schneller zurechtfinden?"
+    ],
+    zielRedezeitSekunden: 180
+  },
+
+  /* ---- BSK-B2, Kapitel 1 (Berufsorientierung) ---- */
+  {
+    id: "telc-b2-bskb2-unternehmensbesichtigung",
+    aktiv: true,
+    kurse: TELC_KURS_BSKB2,
+    format: "TELC_B2_TEIL3",
+    formatLabel: "telc Zertifikat Beruf B2, Sprechen Teil 3 – Lösungswege diskutieren",
+    kapitel: 1,
+    situation: "Eine Unternehmensbesichtigung vorbereiten",
+    imageFile: "images/telc-b2-bskb2-unternehmensbesichtigung.jpg",
+    situationText: "Ihr Team darf in zwei Wochen eine andere Abteilung des Unternehmens besichtigen, zum Beispiel die Produktion oder das Lager. Es ist noch nicht klar, was genau gezeigt werden soll und wer die Besichtigung organisiert.",
+    aufgabeText: "Überlegen Sie gemeinsam, wie die Unternehmensbesichtigung vorbereitet werden sollte.",
+    stichpunkte: [
+      "Was sollte auf jeden Fall gezeigt werden?",
+      "Wer kümmert sich um Anmeldung und Organisation?",
+      "Welche Fragen könnten während der Besichtigung gestellt werden?",
+      "Wie lange sollte die Besichtigung dauern?"
     ],
     zielRedezeitSekunden: 180
   }
