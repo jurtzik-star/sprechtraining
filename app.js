@@ -27,6 +27,14 @@
     themaId: urlParams.get("themaId") || ""
   };
 
+  // Vorschau-Modus: über den URL-Parameter "?vorschau=1" (z. B.
+  // sprechtraining.jurtzik-lernapps.de/?vorschau=1) sieht man ALLE Themen/
+  // Situationen, auch die noch nicht freigeschalteten (aktiv:false) - zum
+  // eigenen Prüfen des kompletten Stands, ohne sie für TN sichtbar zu
+  // machen (die kennen den Parameter nicht und sehen ohne ihn weiterhin
+  // nur das Freigeschaltete).
+  const previewMode = urlParams.get("vorschau") === "1";
+
   const state = {
     name: "",
     kurs: "",
@@ -168,7 +176,16 @@
 
   function istFreigeschaltet(aufgabe) {
     // aktiv fehlt (älterer Eintrag ohne das Feld) -> als freigeschaltet behandeln.
+    if (previewMode) return true;
     return aufgabe.aktiv !== false;
+  }
+
+  // Im Vorschau-Modus zusätzlich kennzeichnen, welche Themen für TN aktuell
+  // noch NICHT freigeschaltet sind (aktiv:false), damit man sie im
+  // Dropdown auf einen Blick unterscheiden kann.
+  function vorschauSuffix(aufgabe) {
+    if (!previewMode || aufgabe.aktiv !== false) return "";
+    return " 🔒 Vorschau (noch nicht freigeschaltet)";
   }
 
   function initThemaOptions() {
@@ -183,7 +200,7 @@
       themenAktiv.forEach((t) => {
         const opt = document.createElement("option");
         opt.value = t.id;
-        opt.textContent = aufgabeLabel(t);
+        opt.textContent = aufgabeLabel(t) + vorschauSuffix(t);
         groupTeil2.appendChild(opt);
       });
       el.selectThema.appendChild(groupTeil2);
@@ -196,7 +213,7 @@
       situationenAktiv.forEach((s) => {
         const opt = document.createElement("option");
         opt.value = s.id;
-        opt.textContent = aufgabeLabel(s) + " (" + s.handlungsfeld + ")";
+        opt.textContent = aufgabeLabel(s) + " (" + s.handlungsfeld + ")" + vorschauSuffix(s);
         groupTeil3.appendChild(opt);
       });
       el.selectThema.appendChild(groupTeil3);
@@ -209,7 +226,7 @@
       telc1Aktiv.forEach((t) => {
         const opt = document.createElement("option");
         opt.value = t.id;
-        opt.textContent = aufgabeLabel(t);
+        opt.textContent = aufgabeLabel(t) + vorschauSuffix(t);
         groupTelc1.appendChild(opt);
       });
       el.selectThema.appendChild(groupTelc1);
@@ -222,7 +239,7 @@
       telc2Aktiv.forEach((t) => {
         const opt = document.createElement("option");
         opt.value = t.id;
-        opt.textContent = aufgabeLabel(t);
+        opt.textContent = aufgabeLabel(t) + vorschauSuffix(t);
         groupTelc2.appendChild(opt);
       });
       el.selectThema.appendChild(groupTelc2);
@@ -235,7 +252,7 @@
       telc3Aktiv.forEach((t) => {
         const opt = document.createElement("option");
         opt.value = t.id;
-        opt.textContent = aufgabeLabel(t);
+        opt.textContent = aufgabeLabel(t) + vorschauSuffix(t);
         groupTelc3.appendChild(opt);
       });
       el.selectThema.appendChild(groupTelc3);
@@ -710,8 +727,14 @@
   }
 
   // ---------- Start ----------
+  function initVorschauBanner() {
+    const banner = document.getElementById("vorschau-banner");
+    if (banner && previewMode) banner.classList.remove("hidden");
+  }
+
   initIntro();
   updateFooterText();
+  initVorschauBanner();
 
   if (deepLink.name) {
     startFlow();

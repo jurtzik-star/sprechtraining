@@ -92,6 +92,28 @@ telc-B2-Sprechen-Format (Kontaktaufnahme / Erfahrungen / gemeinsam etwas
 planen, andere Struktur als DTZ) können später eigene Themen mit einem
 neuen `format`-Wert ergänzt werden.
 
+## Kapitel-Freischaltung & Vorschau-Modus
+
+Jedes Thema/jede Situation hat ein Feld `aktiv: true/false` in
+themen.js/situationen.js/telc-b2.js. Nur `aktiv: true`-Einträge erscheinen
+normalerweise im Themen-Dropdown der App - TN sehen so immer nur die im
+Unterricht bereits behandelten Kapitel, nicht den kompletten Themenpool.
+Du schaltest ein Kapitel frei, indem du die betroffenen Einträge auf
+`aktiv: true` setzt (z. B. direkt auf GitHub).
+
+Um dir selbst vorab den kompletten Stand anzusehen - auch die noch nicht
+freigeschalteten Themen - ruf die App mit dem zusätzlichen Adress-Parameter
+`?vorschau=1` auf, z. B.:
+
+`https://sprechtraining.jurtzik-lernapps.de/?vorschau=1`
+
+Im Vorschau-Modus siehst du ALLE Themen/Situationen im Dropdown, noch
+nicht freigeschaltete sind zusätzlich mit "🔒 Vorschau (noch nicht
+freigeschaltet)" markiert, und oben erscheint ein gut sichtbarer
+gelber Hinweisbalken. Ohne diesen Parameter in der Adresse sehen TN
+(und du selbst im Alltag) weiterhin nur das normal Freigeschaltete - der
+Modus ist rein additiv und ändert nichts an den aktiv-Feldern.
+
 ## Deep-Link aus den Kurs-Apps (nächster möglicher Schritt)
 
 Noch nicht eingebaut: eine "🗣️ Sprechen"-Kachel in B1/BSK-B1+/BSK-B2, die
