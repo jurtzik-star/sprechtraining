@@ -315,5 +315,233 @@ const THEMEN = [
       "Wie lange dauert bei Ihnen die Suche nach einer Stelle meistens?"
     ],
     zielRedezeitSekunden: 120
+  },
+  {
+    id: "dtz-b1-studium-1",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
+    kurse: ["B1 Oberndorf (KL T. Jurtzik)"], // welche Kurse sehen dieses Thema (fehlt das Feld: alle Kurse)
+    format: "DTZ_B1",
+    formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
+    title: "Studium",
+    bildLabel: "Bild 1",
+    imageFile: "images/dtz-b1-studium-1.jpg",
+    bildFragen: ["Was sehen Sie auf dem Bild?", "Was für eine Situation zeigt dieses Bild?"],
+    erfahrungsFragen: [
+      "Haben Sie schon einmal studiert oder eine Hochschule besucht?",
+      "Was studieren Sie, oder was würden Sie gerne studieren?",
+      "Wie funktioniert ein Studium in Deutschland, zum Beispiel Vorlesungen, Seminare und Prüfungen?",
+      "Wie war ein Studium in Ihrem Heimatland im Vergleich zu Deutschland?",
+      "Was ist für Sie das Schwierigste an einem Studium?"
+    ],
+    zielRedezeitSekunden: 120
+  },
+  {
+    id: "dtz-b1-studium-2",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
+    kurse: ["B1 Oberndorf (KL T. Jurtzik)"], // welche Kurse sehen dieses Thema (fehlt das Feld: alle Kurse)
+    format: "DTZ_B1",
+    formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
+    title: "Studium",
+    bildLabel: "Bild 2",
+    imageFile: "images/dtz-b1-studium-2.jpg",
+    bildFragen: ["Was sehen Sie auf dem Bild?", "Was für eine Situation zeigt dieses Bild?"],
+    erfahrungsFragen: [
+      "Haben Sie schon einmal studiert oder eine Hochschule besucht?",
+      "Was studieren Sie, oder was würden Sie gerne studieren?",
+      "Wie funktioniert ein Studium in Deutschland, zum Beispiel Vorlesungen, Seminare und Prüfungen?",
+      "Wie war ein Studium in Ihrem Heimatland im Vergleich zu Deutschland?",
+      "Was ist für Sie das Schwierigste an einem Studium?"
+    ],
+    zielRedezeitSekunden: 120
+  },
+  {
+    id: "dtz-b1-weiterbildung-1",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
+    kurse: ["B1 Oberndorf (KL T. Jurtzik)"], // welche Kurse sehen dieses Thema (fehlt das Feld: alle Kurse)
+    format: "DTZ_B1",
+    formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
+    title: "Weiterbildung",
+    bildLabel: "Bild 1",
+    imageFile: "images/dtz-b1-weiterbildung-1.jpg",
+    bildFragen: ["Was sehen Sie auf dem Bild?", "Was für eine Situation zeigt dieses Bild?"],
+    erfahrungsFragen: [
+      "Haben Sie schon einmal an einer Weiterbildung teilgenommen?",
+      "Warum sind Weiterbildungen im Berufsleben wichtig?",
+      "Wo findet man in Deutschland Angebote für Weiterbildungen?",
+      "Wer bezahlt oft für Weiterbildungen, zum Beispiel der Arbeitgeber oder die Agentur für Arbeit?",
+      "Welche Weiterbildung würden Sie gerne machen?"
+    ],
+    zielRedezeitSekunden: 120
+  },
+  {
+    id: "dtz-b1-weiterbildung-2",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
+    kurse: ["B1 Oberndorf (KL T. Jurtzik)"], // welche Kurse sehen dieses Thema (fehlt das Feld: alle Kurse)
+    format: "DTZ_B1",
+    formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
+    title: "Weiterbildung",
+    bildLabel: "Bild 2",
+    imageFile: "images/dtz-b1-weiterbildung-2.jpg",
+    bildFragen: ["Was sehen Sie auf dem Bild?", "Was für eine Situation zeigt dieses Bild?"],
+    erfahrungsFragen: [
+      "Haben Sie schon einmal an einer Weiterbildung teilgenommen?",
+      "Warum sind Weiterbildungen im Berufsleben wichtig?",
+      "Wo findet man in Deutschland Angebote für Weiterbildungen?",
+      "Wer bezahlt oft für Weiterbildungen, zum Beispiel der Arbeitgeber oder die Agentur für Arbeit?",
+      "Welche Weiterbildung würden Sie gerne machen?"
+    ],
+    zielRedezeitSekunden: 120
+  },
+  {
+    id: "dtz-b1-bank-beratung-1",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
+    kurse: ["B1 Oberndorf (KL T. Jurtzik)"], // welche Kurse sehen dieses Thema (fehlt das Feld: alle Kurse)
+    format: "DTZ_B1",
+    formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
+    title: "Beratungsgespräch bei der Bank",
+    bildLabel: "Bild 1",
+    imageFile: "images/dtz-b1-bank-beratung-1.jpg",
+    bildFragen: ["Was sehen Sie auf dem Bild?", "Was für eine Situation zeigt dieses Bild?"],
+    erfahrungsFragen: [
+      "Haben Sie schon einmal ein Beratungsgespräch bei einer Bank gehabt?",
+      "Welche Bankgeschäfte erledigen Sie regelmäßig?",
+      "Welche Versicherungen finden Sie in Deutschland besonders wichtig?",
+      "Wie eröffnet man in Deutschland ein Bankkonto?",
+      "Wie war das mit Banken und Versicherungen in Ihrem Heimatland?"
+    ],
+    zielRedezeitSekunden: 120
+  },
+  {
+    id: "dtz-b1-bank-beratung-2",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
+    kurse: ["B1 Oberndorf (KL T. Jurtzik)"], // welche Kurse sehen dieses Thema (fehlt das Feld: alle Kurse)
+    format: "DTZ_B1",
+    formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
+    title: "Beratungsgespräch bei der Bank",
+    bildLabel: "Bild 2",
+    imageFile: "images/dtz-b1-bank-beratung-2.jpg",
+    bildFragen: ["Was sehen Sie auf dem Bild?", "Was für eine Situation zeigt dieses Bild?"],
+    erfahrungsFragen: [
+      "Haben Sie schon einmal ein Beratungsgespräch bei einer Bank gehabt?",
+      "Welche Bankgeschäfte erledigen Sie regelmäßig?",
+      "Welche Versicherungen finden Sie in Deutschland besonders wichtig?",
+      "Wie eröffnet man in Deutschland ein Bankkonto?",
+      "Wie war das mit Banken und Versicherungen in Ihrem Heimatland?"
+    ],
+    zielRedezeitSekunden: 120
+  },
+  {
+    id: "dtz-b1-bank-automat-1",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
+    kurse: ["B1 Oberndorf (KL T. Jurtzik)"], // welche Kurse sehen dieses Thema (fehlt das Feld: alle Kurse)
+    format: "DTZ_B1",
+    formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
+    title: "Am Geldautomaten / Online-Banking",
+    bildLabel: "Bild 1",
+    imageFile: "images/dtz-b1-bank-automat-1.jpg",
+    bildFragen: ["Was sehen Sie auf dem Bild?", "Was für eine Situation zeigt dieses Bild?"],
+    erfahrungsFragen: [
+      "Nutzen Sie Online-Banking, oder gehen Sie lieber zur Bank oder zum Automaten?",
+      "Wie sicher fühlen Sie sich beim Umgang mit Online-Banking?",
+      "Was tun Sie, wenn Sie Probleme mit Ihrer Bankkarte haben?",
+      "Wie bezahlen Sie meistens - bar, mit Karte oder per Handy?",
+      "Wie war das Bezahlen und Banking in Ihrem Heimatland?"
+    ],
+    zielRedezeitSekunden: 120
+  },
+  {
+    id: "dtz-b1-bank-automat-2",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
+    kurse: ["B1 Oberndorf (KL T. Jurtzik)"], // welche Kurse sehen dieses Thema (fehlt das Feld: alle Kurse)
+    format: "DTZ_B1",
+    formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
+    title: "Am Geldautomaten / Online-Banking",
+    bildLabel: "Bild 2",
+    imageFile: "images/dtz-b1-bank-automat-2.jpg",
+    bildFragen: ["Was sehen Sie auf dem Bild?", "Was für eine Situation zeigt dieses Bild?"],
+    erfahrungsFragen: [
+      "Nutzen Sie Online-Banking, oder gehen Sie lieber zur Bank oder zum Automaten?",
+      "Wie sicher fühlen Sie sich beim Umgang mit Online-Banking?",
+      "Was tun Sie, wenn Sie Probleme mit Ihrer Bankkarte haben?",
+      "Wie bezahlen Sie meistens - bar, mit Karte oder per Handy?",
+      "Wie war das Bezahlen und Banking in Ihrem Heimatland?"
+    ],
+    zielRedezeitSekunden: 120
+  },
+  {
+    id: "dtz-b1-kita-1",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
+    kurse: ["B1 Oberndorf (KL T. Jurtzik)"], // welche Kurse sehen dieses Thema (fehlt das Feld: alle Kurse)
+    format: "DTZ_B1",
+    formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
+    title: "In der Kita",
+    bildLabel: "Bild 1",
+    imageFile: "images/dtz-b1-kita-1.jpg",
+    bildFragen: ["Was sehen Sie auf dem Bild?", "Was für eine Situation zeigt dieses Bild?"],
+    erfahrungsFragen: [
+      "Haben oder hatten Sie Kinder in einer Kita?",
+      "Wie funktioniert die Anmeldung für einen Kitaplatz in Deutschland?",
+      "Was gefällt Ihnen an der Betreuung in einer Kita?",
+      "Wie war die Kinderbetreuung in Ihrem Heimatland im Vergleich zu Deutschland?",
+      "Was ist Ihnen bei der Betreuung Ihrer Kinder besonders wichtig?"
+    ],
+    zielRedezeitSekunden: 120
+  },
+  {
+    id: "dtz-b1-kita-2",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
+    kurse: ["B1 Oberndorf (KL T. Jurtzik)"], // welche Kurse sehen dieses Thema (fehlt das Feld: alle Kurse)
+    format: "DTZ_B1",
+    formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
+    title: "In der Kita",
+    bildLabel: "Bild 2",
+    imageFile: "images/dtz-b1-kita-2.jpg",
+    bildFragen: ["Was sehen Sie auf dem Bild?", "Was für eine Situation zeigt dieses Bild?"],
+    erfahrungsFragen: [
+      "Haben oder hatten Sie Kinder in einer Kita?",
+      "Wie funktioniert die Anmeldung für einen Kitaplatz in Deutschland?",
+      "Was gefällt Ihnen an der Betreuung in einer Kita?",
+      "Wie war die Kinderbetreuung in Ihrem Heimatland im Vergleich zu Deutschland?",
+      "Was ist Ihnen bei der Betreuung Ihrer Kinder besonders wichtig?"
+    ],
+    zielRedezeitSekunden: 120
+  },
+  {
+    id: "dtz-b1-hausaufgaben-1",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
+    kurse: ["B1 Oberndorf (KL T. Jurtzik)"], // welche Kurse sehen dieses Thema (fehlt das Feld: alle Kurse)
+    format: "DTZ_B1",
+    formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
+    title: "Elterngespräch / Hausaufgaben",
+    bildLabel: "Bild 1",
+    imageFile: "images/dtz-b1-hausaufgaben-1.jpg",
+    bildFragen: ["Was sehen Sie auf dem Bild?", "Was für eine Situation zeigt dieses Bild?"],
+    erfahrungsFragen: [
+      "Helfen Sie Ihren Kindern bei den Hausaufgaben?",
+      "Wie oft haben Sie Gespräche mit den Lehrer*innen Ihrer Kinder?",
+      "Was besprechen Sie normalerweise bei einem Elterngespräch?",
+      "Wie war die Zusammenarbeit zwischen Eltern und Schule in Ihrem Heimatland?",
+      "Was würden Sie sich von der Schule Ihrer Kinder wünschen?"
+    ],
+    zielRedezeitSekunden: 120
+  },
+  {
+    id: "dtz-b1-hausaufgaben-2",
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
+    kurse: ["B1 Oberndorf (KL T. Jurtzik)"], // welche Kurse sehen dieses Thema (fehlt das Feld: alle Kurse)
+    format: "DTZ_B1",
+    formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
+    title: "Elterngespräch / Hausaufgaben",
+    bildLabel: "Bild 2",
+    imageFile: "images/dtz-b1-hausaufgaben-2.jpg",
+    bildFragen: ["Was sehen Sie auf dem Bild?", "Was für eine Situation zeigt dieses Bild?"],
+    erfahrungsFragen: [
+      "Helfen Sie Ihren Kindern bei den Hausaufgaben?",
+      "Wie oft haben Sie Gespräche mit den Lehrer*innen Ihrer Kinder?",
+      "Was besprechen Sie normalerweise bei einem Elterngespräch?",
+      "Wie war die Zusammenarbeit zwischen Eltern und Schule in Ihrem Heimatland?",
+      "Was würden Sie sich von der Schule Ihrer Kinder wünschen?"
+    ],
+    zielRedezeitSekunden: 120
   }
 ];
