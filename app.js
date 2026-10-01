@@ -53,16 +53,24 @@
     .concat(typeof SITUATIONEN !== "undefined" ? SITUATIONEN : [])
     .concat(typeof TELC_TEIL1 !== "undefined" ? TELC_TEIL1 : [])
     .concat(typeof TELC_TEIL2 !== "undefined" ? TELC_TEIL2 : [])
-    .concat(typeof TELC_TEIL3 !== "undefined" ? TELC_TEIL3 : []);
+    .concat(typeof TELC_TEIL3 !== "undefined" ? TELC_TEIL3 : [])
+    .concat(typeof A2_SPRECHEN !== "undefined" ? A2_SPRECHEN : []);
 
+  // Die A2-Formate (Probetest) nutzen dieselben Darstellungen wie die
+  // vorhandenen Formate: A2 Teil 1 wie telc Teil 1 (Leitfrage + Hilfen),
+  // A2 Teil 2 wie telc Teil 2 (zwei Fragen), A2 Teil 3 wie DTZ Teil 3
+  // (Situation + Stichpunkte, hier: eigener Kalender).
+  function istA2(aufgabe) {
+    return !!aufgabe && typeof aufgabe.format === "string" && aufgabe.format.indexOf("A2_") === 0;
+  }
   function istTeil3(aufgabe) {
-    return !!aufgabe && aufgabe.format === "DTZ_B1_TEIL3";
+    return !!aufgabe && (aufgabe.format === "DTZ_B1_TEIL3" || aufgabe.format === "A2_TEIL3");
   }
   function istTelcTeil1(aufgabe) {
-    return !!aufgabe && aufgabe.format === "TELC_B2_TEIL1";
+    return !!aufgabe && (aufgabe.format === "TELC_B2_TEIL1" || aufgabe.format === "A2_TEIL1");
   }
   function istTelcTeil2(aufgabe) {
-    return !!aufgabe && aufgabe.format === "TELC_B2_TEIL2";
+    return !!aufgabe && (aufgabe.format === "TELC_B2_TEIL2" || aufgabe.format === "A2_TEIL2");
   }
   function istTelcTeil3(aufgabe) {
     return !!aufgabe && aufgabe.format === "TELC_B2_TEIL3";
@@ -258,6 +266,28 @@
       el.selectThema.appendChild(groupTelc3);
     }
 
+    // A2-Aufgaben: nach Prüfungsteil gruppiert. Da die A2-Teile auch in
+    // den Listen oben über die gemeinsamen Formate-Helfer erkannt würden,
+    // stehen sie bewusst NUR hier (A2_SPRECHEN ist eine eigene Liste).
+    const a2Aktiv = sichtbar(typeof A2_SPRECHEN !== "undefined" ? A2_SPRECHEN : []);
+    [
+      ["A2_TEIL1", "Teil 1 – Sich vorstellen"],
+      ["A2_TEIL2", "Teil 2 – Ein Alltagsgespräch führen"],
+      ["A2_TEIL3", "Teil 3 – Etwas aushandeln"]
+    ].forEach(([format, label]) => {
+      const liste = a2Aktiv.filter((a) => a.format === format);
+      if (!liste.length) return;
+      const group = document.createElement("optgroup");
+      group.label = label;
+      liste.forEach((a) => {
+        const opt = document.createElement("option");
+        opt.value = a.id;
+        opt.textContent = (a.kapitel ? "Kapitel " + a.kapitel + " · " : "") + aufgabeLabel(a) + vorschauSuffix(a);
+        group.appendChild(opt);
+      });
+      el.selectThema.appendChild(group);
+    });
+
     renderThemaDetails();
   }
 
@@ -292,6 +322,7 @@
       <div class="klebezettel-wrap">
         <div class="klebezettel">
           <div class="klebezettel-pin"></div>
+          ${situation.stichpunkteTitel ? `<p style="margin:0 0 6px;font-weight:700;">${escapeHtml(situation.stichpunkteTitel)}</p>` : ""}
           <ul>${situation.stichpunkte.map((s) => `<li>${escapeHtml(s)}</li>`).join("")}</ul>
         </div>
       </div>
@@ -306,8 +337,8 @@
       ${imgTag}
       <h3>${escapeHtml(aufgabe.title)}</h3>
       <p><em>${escapeHtml(aufgabe.formatLabel)}</em></p>
-      <p><strong>Leitfrage:</strong> ${escapeHtml(aufgabe.leitfrage)}</p>
-      <p><strong>Das kann dir helfen:</strong></p>
+      <p><strong>${istA2(aufgabe) ? "Aufgabe" : "Leitfrage"}:</strong> ${escapeHtml(aufgabe.leitfrage)}</p>
+      <p><strong>${istA2(aufgabe) ? "Stichwörter:" : "Das kann dir helfen:"}</strong></p>
       <ul>${aufgabe.hilfen.map((h) => `<li>${escapeHtml(h)}</li>`).join("")}</ul>
     `;
   }
@@ -320,8 +351,10 @@
       ${imgTag}
       <h3>${escapeHtml(aufgabe.title)}</h3>
       <p><em>${escapeHtml(aufgabe.formatLabel)}</em></p>
-      <p>Deine Gesprächspartnerin/dein Gesprächspartner eröffnet gleich zwei kurze, unabhängige Gespräche mit dir.</p>
-      <p><strong>Das kann beim Antworten helfen:</strong></p>
+      <p>${istA2(aufgabe)
+        ? "Deine Gesprächspartnerin stellt dir Fragen zum Thema. Du antwortest – und dann fragst du sie auch etwas. Die Fragekarten helfen dir."
+        : "Deine Gesprächspartnerin/dein Gesprächspartner eröffnet gleich zwei kurze, unabhängige Gespräche mit dir."}</p>
+      <p><strong>${istA2(aufgabe) ? "Fragekarten und Hilfen:" : "Das kann beim Antworten helfen:"}</strong></p>
       <ul>${aufgabe.hilfen.map((h) => `<li>${escapeHtml(h)}</li>`).join("")}</ul>
     `;
   }
@@ -392,7 +425,16 @@
 
     el.gespraechThemaSummary.innerHTML = detailsHtml(thema);
 
-    if (istTelcTeil1(thema)) {
+    if (istA2(thema)) {
+      el.gespraechHeading.textContent = istTelcTeil1(thema)
+        ? "3. Gespräch mit der Prüferin"
+        : "3. Gespräch mit deiner Gesprächspartnerin";
+      el.gespraechHint.textContent = istTelcTeil1(thema)
+        ? "Stell dich kurz vor. Die Stichwörter helfen dir. Danach stellt dir die Prüferin noch ein paar kurze Fragen."
+        : istTelcTeil2(thema)
+        ? "Antworte kurz auf die Frage. Danach fragst du zurück – die Fragekarten helfen dir."
+        : "Schau in deinen Kalender (Zettel oben). Mach Vorschläge und sag, wann du keine Zeit hast. Findet zusammen einen Termin.";
+    } else if (istTelcTeil1(thema)) {
       el.gespraechHeading.textContent = "3. Gespräch mit der Prüferin";
       el.gespraechHint.textContent =
         "Sprich zuerst kurz und zusammenhängend über die Leitfrage (ca. 1 Minute). Danach stellt dir die Prüferin noch ein bis zwei Anschlussfragen.";
@@ -411,7 +453,9 @@
     }
 
     let eroeffnung;
-    if (istTelcTeil1(thema)) {
+    if (thema.eroeffnung) {
+      eroeffnung = thema.eroeffnung;
+    } else if (istTelcTeil1(thema)) {
       eroeffnung = thema.leitfrage;
     } else if (istTelcTeil2(thema)) {
       eroeffnung = thema.frage1;
@@ -566,6 +610,7 @@
         situationText: thema.situationText,
         aufgabeText: thema.aufgabeText,
         stichpunkte: thema.stichpunkte,
+        partnerInfo: thema.partnerInfo,
         zielRedezeitSekunden: thema.zielRedezeitSekunden
       };
     }
