@@ -30,7 +30,8 @@ const CONFIG = {
   GOOGLE_FORM_ACTION_URL_BY_KURS: {
     "B1 Oberndorf (KL T. Jurtzik)": "https://docs.google.com/forms/d/e/1FAIpQLSdHVDYD1TKeXYndodDpRYdGTh1Jj9ZVF4sRHSA4OFnyn-yGRw/formResponse",
     "BSK-B1+ Rottweil (KL T. Jurtzik)": "https://docs.google.com/forms/d/e/1FAIpQLScscORmZvtnkFPQfvtAaSNc3uYtRareC1Kve5gMzkXv67eeSA/formResponse",
-    "BSK-B2 Rottweil (KL T. Jurtzik)": "https://docs.google.com/forms/d/e/1FAIpQLScLB2jmDhapZZhv0Pvi3GwmF9hue_H4amcNasjQT3ON8eNVCw/formResponse"
+    "BSK-B2 Rottweil (KL T. Jurtzik)": "https://docs.google.com/forms/d/e/1FAIpQLScLB2jmDhapZZhv0Pvi3GwmF9hue_H4amcNasjQT3ON8eNVCw/formResponse",
+    "A2 Oberndorf": "https://docs.google.com/forms/d/e/1FAIpQLSenyrZJM1WbhiJfgzSQ8SGiFKm3GS4JbTQEvbJkjRRQMYh5Kg/formResponse"
   },
   // Gleiche entry-IDs gelten für alle Kurse, solange die anderen
   // Formulare als Kopie dieses Formulars angelegt werden (wie bei
@@ -46,5 +47,5 @@ const CONFIG = {
 
   // Auswahlliste der Kurse/Gruppen im Dropdown - gleiche Liste wie bei
   // Schreibtraining, damit Deep-Links aus den Kurs-Apps funktionieren.
-  KURSE: ["B1 Oberndorf (KL T. Jurtzik)", "BSK-B1+ Rottweil (KL T. Jurtzik)", "BSK-B2 Rottweil (KL T. Jurtzik)"]
+  KURSE: ["B1 Oberndorf (KL T. Jurtzik)", "BSK-B1+ Rottweil (KL T. Jurtzik)", "BSK-B2 Rottweil (KL T. Jurtzik)", "A2 Oberndorf"]
 };
