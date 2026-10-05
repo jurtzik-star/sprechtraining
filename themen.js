@@ -11,6 +11,8 @@
    den Titel und die Leitfragen ohne Foto.
    ============================================================ */
 
+// 05.10.2026: DTZ-Aufgaben für den B1-Abendkurs ausgeblendet (Kurs schließt mit telc B1 ab,
+// siehe telc-b1.js). Wieder einblenden: aktiv auf true setzen.
 const THEMEN = [
   {
     id: "dtz-b1-arztbesuch-1",
@@ -90,7 +92,7 @@ const THEMEN = [
   },
   {
     id: "dtz-b1-amt-wartebereich-1",
-    aktiv: true, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     kurse: ["B1 Oberndorf (KL T. Jurtzik)"], // welche Kurse sehen dieses Thema (fehlt das Feld: alle Kurse)
     format: "DTZ_B1",
     formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
@@ -109,7 +111,7 @@ const THEMEN = [
   },
   {
     id: "dtz-b1-amt-wartebereich-2",
-    aktiv: true, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     kurse: ["B1 Oberndorf (KL T. Jurtzik)"], // welche Kurse sehen dieses Thema (fehlt das Feld: alle Kurse)
     format: "DTZ_B1",
     formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
@@ -128,7 +130,7 @@ const THEMEN = [
   },
   {
     id: "dtz-b1-amt-schalter-1",
-    aktiv: true, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     kurse: ["B1 Oberndorf (KL T. Jurtzik)"], // welche Kurse sehen dieses Thema (fehlt das Feld: alle Kurse)
     format: "DTZ_B1",
     formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",
@@ -147,7 +149,7 @@ const THEMEN = [
   },
   {
     id: "dtz-b1-amt-schalter-2",
-    aktiv: true, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     kurse: ["B1 Oberndorf (KL T. Jurtzik)"], // welche Kurse sehen dieses Thema (fehlt das Feld: alle Kurse)
     format: "DTZ_B1",
     formatLabel: "DTZ, Sprechen Teil 2 – über Erfahrungen sprechen",

@@ -17,10 +17,12 @@
    und Klebezettel ohne Foto.
    ============================================================ */
 
+// 05.10.2026: DTZ-Aufgaben für den B1-Abendkurs ausgeblendet (Kurs schließt mit telc B1 ab,
+// siehe telc-b1.js). Wieder einblenden: aktiv auf true setzen.
 const SITUATIONEN = [
   {
     id: "dtz-b1-teil3-aemter-ummeldung",
-    aktiv: true, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
+    aktiv: false, // true = für TN sichtbar, false = noch ausgeblendet (Kapitel-Freischaltung)
     kurse: ["B1 Oberndorf (KL T. Jurtzik)"], // welche Kurse sehen dieses Thema (fehlt das Feld: alle Kurse)
     format: "DTZ_B1_TEIL3",
     formatLabel: "DTZ, Sprechen Teil 3 – Gemeinsam planen",
