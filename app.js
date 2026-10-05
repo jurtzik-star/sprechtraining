@@ -54,7 +54,8 @@
     .concat(typeof TELC_TEIL1 !== "undefined" ? TELC_TEIL1 : [])
     .concat(typeof TELC_TEIL2 !== "undefined" ? TELC_TEIL2 : [])
     .concat(typeof TELC_TEIL3 !== "undefined" ? TELC_TEIL3 : [])
-    .concat(typeof A2_SPRECHEN !== "undefined" ? A2_SPRECHEN : []);
+    .concat(typeof A2_SPRECHEN !== "undefined" ? A2_SPRECHEN : [])
+    .concat(typeof TELC_B1_SPRECHEN !== "undefined" ? TELC_B1_SPRECHEN : []);
 
   // Die A2-Formate (Probetest) nutzen dieselben Darstellungen wie die
   // vorhandenen Formate: A2 Teil 1 wie telc Teil 1 (Leitfrage + Hilfen),
@@ -63,11 +64,21 @@
   function istA2(aufgabe) {
     return !!aufgabe && typeof aufgabe.format === "string" && aufgabe.format.indexOf("A2_") === 0;
   }
+  // telc Deutsch B1 (B1-Abendkurs, seit 05.10.2026): Teil 1 nutzt die
+  // Darstellung von telc Teil 1 (Leitfrage + Stichpunkte), Teil 3 die von
+  // DTZ Teil 3 (Situation + Klebezettel). Teil 2 (zwei Meinungen) hat eine
+  // eigene Darstellung, siehe telcB1Teil2DetailsHtml().
+  function istTelcB1(aufgabe) {
+    return !!aufgabe && typeof aufgabe.format === "string" && aufgabe.format.indexOf("TELC_B1_") === 0;
+  }
+  function istTelcB1Teil2(aufgabe) {
+    return !!aufgabe && aufgabe.format === "TELC_B1_TEIL2";
+  }
   function istTeil3(aufgabe) {
-    return !!aufgabe && (aufgabe.format === "DTZ_B1_TEIL3" || aufgabe.format === "A2_TEIL3");
+    return !!aufgabe && (aufgabe.format === "DTZ_B1_TEIL3" || aufgabe.format === "A2_TEIL3" || aufgabe.format === "TELC_B1_TEIL3");
   }
   function istTelcTeil1(aufgabe) {
-    return !!aufgabe && (aufgabe.format === "TELC_B2_TEIL1" || aufgabe.format === "A2_TEIL1");
+    return !!aufgabe && (aufgabe.format === "TELC_B2_TEIL1" || aufgabe.format === "A2_TEIL1" || aufgabe.format === "TELC_B1_TEIL1");
   }
   function istTelcTeil2(aufgabe) {
     return !!aufgabe && (aufgabe.format === "TELC_B2_TEIL2" || aufgabe.format === "A2_TEIL2");
@@ -79,7 +90,7 @@
   // Gesprächspartnerin/einen Gesprächspartner spielt (Rollenspiel statt
   // Prüfungsgespräch).
   function istGespraechspartnerFormat(aufgabe) {
-    return istTeil3(aufgabe) || istTelcTeil2(aufgabe) || istTelcTeil3(aufgabe);
+    return istTeil3(aufgabe) || istTelcTeil2(aufgabe) || istTelcTeil3(aufgabe) || istTelcB1(aufgabe);
   }
   // Manche Themen (aktuell: telc-B2-Themen für BSK-B1+) sind über das Feld
   // "kurse" nur für bestimmte Kurse gedacht. Fehlt das Feld, gilt das Thema
@@ -89,7 +100,7 @@
   }
   function aufgabeLabel(aufgabe) {
     if (istTeil3(aufgabe) || istTelcTeil3(aufgabe)) return aufgabe.situation;
-    if (istTelcTeil1(aufgabe) || istTelcTeil2(aufgabe)) return aufgabe.title;
+    if (istTelcTeil1(aufgabe) || istTelcTeil2(aufgabe) || istTelcB1Teil2(aufgabe)) return aufgabe.title;
     return aufgabe.title + " (" + aufgabe.bildLabel + ")";
   }
 
@@ -200,6 +211,27 @@
     el.selectThema.innerHTML = "";
 
     const sichtbar = (liste) => liste.filter((a) => istFreigeschaltet(a) && passtZuKurs(a));
+
+    // telc Deutsch B1 (B1-Abendkurs) - steht ganz oben, weil das die
+    // Prüfung ist, auf die der Kurs vorbereitet.
+    const telcB1Aktiv = sichtbar(typeof TELC_B1_SPRECHEN !== "undefined" ? TELC_B1_SPRECHEN : []);
+    [
+      ["TELC_B1_TEIL1", "telc B1 · Teil 1 – Einander kennenlernen"],
+      ["TELC_B1_TEIL2", "telc B1 · Teil 2 – Über ein Thema sprechen"],
+      ["TELC_B1_TEIL3", "telc B1 · Teil 3 – Gemeinsam etwas planen"]
+    ].forEach(([format, label]) => {
+      const liste = telcB1Aktiv.filter((a) => a.format === format);
+      if (!liste.length) return;
+      const group = document.createElement("optgroup");
+      group.label = label;
+      liste.forEach((a) => {
+        const opt = document.createElement("option");
+        opt.value = a.id;
+        opt.textContent = (a.format !== "TELC_B1_TEIL1" && a.kapitel ? "Kapitel " + a.kapitel + " · " : "") + aufgabeLabel(a) + vorschauSuffix(a);
+        group.appendChild(opt);
+      });
+      el.selectThema.appendChild(group);
+    });
 
     const themenAktiv = sichtbar(THEMEN);
     if (themenAktiv.length) {
@@ -337,8 +369,8 @@
       ${imgTag}
       <h3>${escapeHtml(aufgabe.title)}</h3>
       <p><em>${escapeHtml(aufgabe.formatLabel)}</em></p>
-      <p><strong>${istA2(aufgabe) ? "Aufgabe" : "Leitfrage"}:</strong> ${escapeHtml(aufgabe.leitfrage)}</p>
-      <p><strong>${istA2(aufgabe) ? "Stichwörter:" : "Das kann dir helfen:"}</strong></p>
+      <p><strong>${istA2(aufgabe) || istTelcB1(aufgabe) ? "Aufgabe" : "Leitfrage"}:</strong> ${escapeHtml(aufgabe.leitfrage)}</p>
+      <p><strong>${istA2(aufgabe) || istTelcB1(aufgabe) ? "Stichwörter:" : "Das kann dir helfen:"}</strong></p>
       <ul>${aufgabe.hilfen.map((h) => `<li>${escapeHtml(h)}</li>`).join("")}</ul>
     `;
   }
@@ -359,7 +391,32 @@
     `;
   }
 
+  function telcB1Teil2DetailsHtml(aufgabe) {
+    return `
+      <h3>${escapeHtml(aufgabe.title)}</h3>
+      <p><em>${escapeHtml(aufgabe.formatLabel)}</em></p>
+      <p class="situation-text">${escapeHtml(aufgabe.kontext)}</p>
+      <div class="klebezettel-wrap">
+        <div class="klebezettel">
+          <div class="klebezettel-pin"></div>
+          <p style="margin:0 0 6px;font-weight:700;">${escapeHtml(aufgabe.title)}</p>
+          <p style="margin:0 0 8px;">„${escapeHtml(aufgabe.meinungA.text)}“</p>
+          <p style="margin:0;font-size:0.9em;">${escapeHtml(aufgabe.meinungA.person)}</p>
+        </div>
+      </div>
+      <p><strong>Redemittel:</strong></p>
+      <ul>${aufgabe.hilfen.map((h) => `<li>${escapeHtml(h)}</li>`).join("")}</ul>
+    `;
+  }
+
+  function telcB1HilfenHtml(aufgabe) {
+    if (!istTelcB1(aufgabe) || !istTeil3(aufgabe) || !Array.isArray(aufgabe.hilfen)) return "";
+    return `<p><strong>Redemittel:</strong></p><ul>${aufgabe.hilfen.map((h) => `<li>${escapeHtml(h)}</li>`).join("")}</ul>`;
+  }
+
   function detailsHtml(aufgabe) {
+    if (istTelcB1Teil2(aufgabe)) return telcB1Teil2DetailsHtml(aufgabe);
+    if (istTelcB1(aufgabe) && istTeil3(aufgabe)) return situationDetailsHtml(aufgabe) + telcB1HilfenHtml(aufgabe);
     if (istTeil3(aufgabe) || istTelcTeil3(aufgabe)) return situationDetailsHtml(aufgabe);
     if (istTelcTeil1(aufgabe)) return telcTeil1DetailsHtml(aufgabe);
     if (istTelcTeil2(aufgabe)) return telcTeil2DetailsHtml(aufgabe);
@@ -425,7 +482,14 @@
 
     el.gespraechThemaSummary.innerHTML = detailsHtml(thema);
 
-    if (istA2(thema)) {
+    if (istTelcB1(thema)) {
+      el.gespraechHeading.textContent = "3. Gespräch mit deiner Gesprächspartnerin";
+      el.gespraechHint.textContent = istTelcTeil1(thema)
+        ? "Lernt euch kennen: Antworte auf die Fragen und stell selbst Fragen. Die Stichwörter helfen dir."
+        : istTelcB1Teil2(thema)
+        ? "Berichte zuerst, was in deinem Text steht (Zettel oben). Dann erzählt deine Gesprächspartnerin von ihrem Text. Danach diskutiert ihr: Sag deine Meinung und erzähl von eigenen Erfahrungen."
+        : "Plant zusammen: Mach eigene Vorschläge, reagiere auf ihre Ideen und verteilt die Aufgaben. Die Stichpunkte auf dem Zettel helfen dir.";
+    } else if (istA2(thema)) {
       el.gespraechHeading.textContent = istTelcTeil1(thema)
         ? "3. Gespräch mit der Prüferin"
         : "3. Gespräch mit deiner Gesprächspartnerin";
@@ -457,6 +521,8 @@
       eroeffnung = thema.eroeffnung;
     } else if (istTelcTeil1(thema)) {
       eroeffnung = thema.leitfrage;
+    } else if (istTelcB1Teil2(thema)) {
+      eroeffnung = "Hallo! Wir haben beide etwas zum Thema „" + thema.title + "“ gelesen. Erzähl doch mal: Was steht in deinem Text?";
     } else if (istTelcTeil2(thema)) {
       eroeffnung = thema.frage1;
     } else if (istTeil3(thema) || istTelcTeil3(thema)) {
@@ -601,6 +667,18 @@
   }
 
   function themaForWorker(thema) {
+    if (istTelcB1Teil2(thema)) {
+      return {
+        format: thema.format,
+        formatLabel: thema.formatLabel,
+        title: thema.title,
+        kontext: thema.kontext,
+        meinungA: thema.meinungA,
+        meinungB: thema.meinungB,
+        hilfen: thema.hilfen,
+        zielRedezeitSekunden: thema.zielRedezeitSekunden
+      };
+    }
     if (istTeil3(thema) || istTelcTeil3(thema)) {
       return {
         format: thema.format,
